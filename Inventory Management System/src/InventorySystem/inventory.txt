@@ -1,0 +1,6 @@
+Electronics,Mobile Phones,false,false,799.99,10,1,Apple,iPhone 13
+Grocery,Fruits,false,true,2.99,50,2,2023-12-31
+Fragile,Glassware,true,false,49.99,5,3,0.5
+Electronics,Laptops,false,false,1299.99,8,4,HP,ENVY x360
+Grocery,Canned Goods,false,false,1.49,100,5,2024-06-30
+Fragile,China Set,true,false,199.99,3,6,2.0
