@@ -1,0 +1,6 @@
+1,Deluxe,200.00,50.00,Available
+2,Suite,100.00,30.00,Available
+3,Deluxe,150.00,25.00,Available
+4,Suite,20.00,5.00,Available
+5,Deluxe,120.00,25.00,Booked
+6,Suite,80.00,10.00,Available
