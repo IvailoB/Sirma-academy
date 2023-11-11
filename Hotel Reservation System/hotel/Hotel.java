@@ -40,6 +40,7 @@ class Hotel {
         try (BufferedReader reader = new BufferedReader(new FileReader(pathToRoom))) {
             String line = reader.readLine();
 
+
             while (line != null) {
                 Room room = new Room();
                 room.readRoomDataFromFile(line, room);
@@ -51,6 +52,28 @@ class Hotel {
             e.printStackTrace();
         }
         return rooms;
+    }
+
+    private void writeToTheRooms(int bookingID, String replace, String replacement, String path) {
+        StringBuilder content = new StringBuilder();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
+            String line = reader.readLine();
+
+            while (line != null) {
+                String[] split = line.split(",");
+                content.append(line).append(System.lineSeparator());
+                int number = Integer.parseInt(split[0]);
+                if (number == bookingID) {
+                    content = new StringBuilder(content.toString().replaceAll(replace, replacement));
+                }
+                line = reader.readLine();
+            }
+            FileOutputStream writer = new FileOutputStream(path);
+            writer.write(content.toString().getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -109,27 +132,7 @@ class Hotel {
         return "You cancel the order.";
     }
 
-    private void writeToTheRooms(int bookingID, String replace, String replacement, String path) {
-        StringBuilder content = new StringBuilder();
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
-            String line = reader.readLine();
-
-            while (line != null) {
-                String[] split = line.split(",");
-                content.append(line).append(System.lineSeparator());
-                int number = Integer.parseInt(split[0]);
-                if (number == bookingID) {
-                    content = new StringBuilder(content.toString().replaceAll(replace, replacement));
-                }
-                line = reader.readLine();
-            }
-            FileOutputStream writer = new FileOutputStream(path);
-            writer.write(content.toString().getBytes());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     public List<Room> getRooms() {
         return rooms;

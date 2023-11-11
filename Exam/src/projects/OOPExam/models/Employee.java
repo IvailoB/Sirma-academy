@@ -1,5 +1,7 @@
 package projects.OOPExam.models;
 
+import java.time.LocalDate;
+
 public class Employee {
     private int id;
     private String name;
@@ -17,6 +19,9 @@ public class Employee {
         this.department = department;
         this.role = role;
         this.salary = salary;
+    }
+
+    public Employee() {
     }
 
     public int getId() {
@@ -73,5 +78,24 @@ public class Employee {
 
     public void setSalary(double salary) {
         this.salary = salary;
+    }
+
+    @Override
+    public String toString() {
+        return
+                id + ',' + name + ',' + startDate + ',' + endDate + ',' + department + ',' + role + ',' + salary;
+    }
+
+    public Employee readEmployeeDataFromFile(String employeeDataFromFile) {
+        String[] data = employeeDataFromFile.split(",");
+        setId(Integer.parseInt(data[0]));
+        setName(data[1]);
+        setStartDate(data[2]);
+        setEndDate(data[3]);
+        setDepartment(data[4]);
+        setRole(data[5]);
+        setSalary(Double.parseDouble(data[6]));
+
+        return this;
     }
 }
