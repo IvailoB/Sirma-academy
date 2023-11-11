@@ -15,41 +15,61 @@ public class StaffManager implements Manager {
 
 
     @Override
-    public void execute(String command) {
+    public void execute(String[] command) {
         Scanner scanner = new Scanner(System.in);
-        switch (command) {
-//            int id = -1;
-            case "Add Employee":
-                String[] data = scanner.nextLine().split(", ");
+        String[] data;
+        String action = command[0];
+        String secondAction = command[1];
+        int id;
+        switch (action) {
+
+            case "Add":
+                data = scanner.nextLine().split(", ");
                 Employee employee = createEmployee(data);
                 addEmployee(employee);
                 break;
-//            case "Edit":
-//                id = scanner.nextInt();
-//                editEmployee(id);
-//                break;
-//            case "List employees":
-//                listEmployees();
-//                break;
-//            case "Search Department Marketing":
-//                break;
-//            case "Search Id":
-//                id = scanner.nextInt();
-//                searchEmployee(id);
-//                break;
-//            case "Fire 1":
-//                fireEmployee(id);
-//                break;
-//            case "Search Name []]":
-//                searchEmployeeByName(name);
-//                break;
-//            case "Save & Exit":
-//                save();
-//                break;
+            case "Edit":
+                id = Integer.parseInt(command[1]);
+                data = scanner.nextLine().split(", ");
+                editEmployee(id, data);
+                break;
+            case "List":
+                listEmployees().forEach(System.out::println);
+                break;
+
+            case "Fire":
+                id = Integer.parseInt(command[1]);
+                fireEmployee(id);
+                break;
+
+            case "Search":
+                switch (secondAction) {
+                    case "Name":
+                        String employeeName = command[2];
+                        searchEmployeeByName(employeeName);
+                        break;
+                    case "Department":
+                        String departmentName = command[2];
+                        searchDepartmentByName(departmentName);
+                        break;
+                    case "Id":
+                        id = Integer.parseInt(command[2]);
+                        searchEmployee(id);
+                        break;
+                }
+                break;
+
+            case "Save & Exit":
+                save();
+                return;
             default:
                 System.out.println("Invalid command!");
                 System.out.println("Please check and try again");
         }
+    }
+
+    private void searchDepartmentByName(String departmentName) {
+        service.searchDepartmentByName(departmentName);
     }
 
     public Employee createEmployee(String[] data) {
@@ -65,36 +85,36 @@ public class StaffManager implements Manager {
 
     @Override
     public void addEmployee(Employee employee) {
-        service.writeData(employee);
+        service.addEmployee(employee);
     }
 
     @Override
-    public void editEmployee(int id) {
-
+    public void editEmployee(int id, String[] data) {
+        service.editEmployee(id, data);
     }
 
     @Override
     public List<Employee> listEmployees() {
-        return null;
+        return service.readData();
     }
 
     @Override
     public Employee searchEmployee(int id) {
-        return null;
+        return service.searchEmployeeById(id);
     }
 
     @Override
     public void fireEmployee(int id) {
-
+        service.fireEmployee(id);
     }
 
     @Override
     public Employee searchEmployeeByName(String name) {
-        return null;
+        return service.searchEmployeeByName(name);
     }
 
     @Override
     public void save() {
-
+        service.save();
     }
 }

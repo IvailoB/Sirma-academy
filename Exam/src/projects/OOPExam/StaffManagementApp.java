@@ -25,7 +25,7 @@ public class StaffManagementApp {
             displayCommands();
             Scanner scanner = new Scanner(System.in);
             System.out.println("Please enter your command: ");
-            String command = scanner.nextLine();
+            String[] command = scanner.nextLine().split(" ");
             manager.execute(command);
 
             // Add Employee

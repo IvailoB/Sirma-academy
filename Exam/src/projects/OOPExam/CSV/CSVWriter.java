@@ -9,10 +9,7 @@ import java.util.List;
 public class CSVWriter {
 
 
-    public void writeData(Employee newEmployee, String FILE_NAME, List<Employee> oldContent) {
-
-        List<Employee> allEmployees = new ArrayList<>(oldContent);
-        allEmployees.add(newEmployee);
+    public void writeData(List<Employee> allEmployees, String FILE_NAME) {
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME))) {
             // Writing header

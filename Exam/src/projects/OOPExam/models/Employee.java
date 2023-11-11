@@ -82,8 +82,7 @@ public class Employee {
 
     @Override
     public String toString() {
-        return
-                id + ',' + name + ',' + startDate + ',' + endDate + ',' + department + ',' + role + ',' + salary;
+        return id + ',' + name + ',' + startDate + ',' + endDate + ',' + department + ',' + role + ',' + salary;
     }
 
     public Employee readEmployeeDataFromFile(String employeeDataFromFile) {

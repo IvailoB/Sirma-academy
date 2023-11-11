@@ -4,11 +4,11 @@ import java.util.List;
 
 public interface Manager {
 
-    void execute(String command);
+    void execute(String[] command);
 
     void addEmployee(Employee employee);
 
-    void editEmployee(int id);
+    void editEmployee(int id,String[] data);
 
     List<Employee> listEmployees();
 
