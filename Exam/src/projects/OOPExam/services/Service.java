@@ -11,7 +11,7 @@ public interface Service {
 
     void editEmployee(int id,String[] data);
 
-    void fireEmployee(int id);
+    String fireEmployee(int id);
 
     void save();
 
@@ -19,7 +19,7 @@ public interface Service {
 
     List<Employee> searchDepartmentByName(String departmentName);
 
-    Employee searchEmployeeByName(String name);
+    String searchEmployeeByName(String name);
 
-    Employee searchEmployeeById(int id);
+    String searchEmployeeById(int id);
 }

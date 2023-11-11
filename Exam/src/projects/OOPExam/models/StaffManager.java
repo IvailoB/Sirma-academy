@@ -6,7 +6,15 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
+//import projects.OOPExam.constants.Messages;??
+
 public class StaffManager implements Manager {
+    public final String INVALID_EMPLOYEE_ID = "There is no employee with that id";
+    public final String INVALID_EMPLOYEE_NAME = "There is no employee with that id";
+    public final String INVALID_DEPARTMENT_NAME = "There is no department with that name";
+    public final String VALID_DEPARTMENT_NAME = "There is departments with that name";
+    public final String INVALID_COMMAND = "Invalid command! \nPlease check and try again\n";
+
     private Service service;
 
     public StaffManager(Service service) {
@@ -46,7 +54,7 @@ public class StaffManager implements Manager {
                 switch (secondAction) {
                     case "Name":
                         String employeeName = command[2];
-                        searchEmployeeByName(employeeName);
+                        System.out.println(searchEmployeeByName(employeeName));
                         break;
                     case "Department":
                         String departmentName = command[2];
@@ -54,22 +62,26 @@ public class StaffManager implements Manager {
                         break;
                     case "Id":
                         id = Integer.parseInt(command[2]);
-                        searchEmployee(id);
+                        System.out.println(searchEmployeeById(id));
                         break;
                 }
                 break;
 
-            case "Save & Exit":
+            case "Save":
                 save();
                 return;
             default:
-                System.out.println("Invalid command!");
-                System.out.println("Please check and try again");
+                System.out.println(INVALID_COMMAND);
         }
     }
 
-    private void searchDepartmentByName(String departmentName) {
-        service.searchDepartmentByName(departmentName);
+    public String searchDepartmentByName(String departmentName) {
+        if (!service.searchDepartmentByName(departmentName).isEmpty()) {
+            List<Employee> employees = service.searchDepartmentByName(departmentName);
+            employees.forEach(System.out::println);
+            return VALID_DEPARTMENT_NAME;
+        }
+        return INVALID_DEPARTMENT_NAME;
     }
 
     public Employee createEmployee(String[] data) {
@@ -99,18 +111,28 @@ public class StaffManager implements Manager {
     }
 
     @Override
-    public Employee searchEmployee(int id) {
-        return service.searchEmployeeById(id);
+    public String searchEmployeeById(int id) {
+        if (service.searchEmployeeById(id) != null) {
+            return service.searchEmployeeById(id);
+        }
+        return INVALID_EMPLOYEE_ID;
     }
 
     @Override
-    public void fireEmployee(int id) {
-        service.fireEmployee(id);
+    public String fireEmployee(int id) {
+        if (service.fireEmployee(id) != null) {
+            service.fireEmployee(id);
+        }
+
+        return INVALID_EMPLOYEE_ID;
     }
 
     @Override
-    public Employee searchEmployeeByName(String name) {
-        return service.searchEmployeeByName(name);
+    public String searchEmployeeByName(String name) {
+        if (service.searchEmployeeByName(name) != null) {
+            return service.searchEmployeeByName(name);
+        }
+        return INVALID_EMPLOYEE_NAME;
     }
 
     @Override

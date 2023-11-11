@@ -12,8 +12,8 @@ public class Employee {
     private double salary;
 
     public Employee(int id, String name, String startDate, String endDate, String department, String role, double salary) {
-        this.id = id;
-        this.name = name;
+        setId(id);
+        setName(name);
         this.startDate = startDate;
         this.endDate = endDate;
         this.department = department;
@@ -29,7 +29,9 @@ public class Employee {
     }
 
     public void setId(int id) {
-        this.id = id;
+        if (id > 0) {
+            this.id = id;
+        }
     }
 
     public String getName() {
@@ -37,7 +39,9 @@ public class Employee {
     }
 
     public void setName(String name) {
-        this.name = name;
+        if (name.length() > 3 && !name.trim().isEmpty()) {
+            this.name = name;
+        }
     }
 
     public String getStartDate() {
@@ -61,7 +65,9 @@ public class Employee {
     }
 
     public void setDepartment(String department) {
-        this.department = department;
+        if (department.length() > 3 && !department.trim().isEmpty()) {
+            this.department = department;
+        }
     }
 
     public String getRole() {
@@ -69,7 +75,9 @@ public class Employee {
     }
 
     public void setRole(String role) {
-        this.role = role;
+        if (role.length() >= 2 && !role.trim().isEmpty()) {
+            this.role = role;
+        }
     }
 
     public double getSalary() {
@@ -85,16 +93,15 @@ public class Employee {
         return id + ',' + name + ',' + startDate + ',' + endDate + ',' + department + ',' + role + ',' + salary;
     }
 
-    public Employee readEmployeeDataFromFile(String employeeDataFromFile) {
-        String[] data = employeeDataFromFile.split(",");
-        setId(Integer.parseInt(data[0]));
-        setName(data[1]);
-        setStartDate(data[2]);
-        setEndDate(data[3]);
-        setDepartment(data[4]);
-        setRole(data[5]);
-        setSalary(Double.parseDouble(data[6]));
-
-        return this;
-    }
+//    public Employee readEmployeeDataFromFile(String employeeDataFromFile) {
+//        String[] data = employeeDataFromFile.split(",");
+//        setId(Integer.parseInt(data[0]));
+//        setName(data[1]);
+//        setStartDate(data[2]);
+//        setEndDate(data[3]);
+//        setDepartment(data[4]);
+//        setRole(data[5]);
+//        setSalary(Double.parseDouble(data[6]));
+//        return this;
+//    }
 }

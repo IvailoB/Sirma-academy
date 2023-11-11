@@ -12,11 +12,13 @@ public interface Manager {
 
     List<Employee> listEmployees();
 
-    Employee searchEmployee(int id);
+    String searchEmployeeById(int id);
 
-    void fireEmployee(int id);
+    String fireEmployee(int id);
 
-    Employee searchEmployeeByName(String name);
+    String searchEmployeeByName(String name);
+
+    String searchDepartmentByName(String departmentName);
 
     void save();
 }

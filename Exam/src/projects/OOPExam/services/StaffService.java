@@ -4,6 +4,7 @@ import projects.OOPExam.CSV.CSVReader;
 import projects.OOPExam.CSV.CSVWriter;
 import projects.OOPExam.models.Employee;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,8 +43,15 @@ public class StaffService implements Service {
     }
 
     @Override
-    public void fireEmployee(int id) {
-        this.employees.remove(getEmployee(id));
+    public String fireEmployee(int id) {
+        if (getEmployee(id) != null) {
+            Employee employee = getEmployee(id);
+            employee.setEndDate(LocalDate.now().toString());
+            String employeeInfo = employee.toString();
+            employees.remove(employee);
+            return "You Fired " + employeeInfo;
+        }
+        return null;
     }
 
     @Override
@@ -63,17 +71,17 @@ public class StaffService implements Service {
     }
 
     @Override
-    public Employee searchEmployeeByName(String name) {
-        return employees.stream().filter(e -> e.getName() == name).findAny().get();
+    public String searchEmployeeByName(String name) {
+        Employee employee = employees.stream().filter(e -> e.getName().equals(name)).findAny().orElseGet(null);
+        return employee.toString();
     }
 
     @Override
-    public Employee searchEmployeeById(int id) {
-        return getEmployee(id);
+    public String searchEmployeeById(int id) {
+        return getEmployee(id).toString();
     }
 
     private Employee getEmployee(int id) {
-        Employee employee = employees.stream().filter(e -> e.getId() == id).findAny().get();
-        return employee;
+        return employees.stream().filter(e -> e.getId() == id).findAny().orElseGet(null);
     }
 }
