@@ -1,5 +1,6 @@
 package com.Project.EmployeeProject.services;
 
+import com.Project.EmployeeProject.models.entity.Employee;
 import com.Project.EmployeeProject.repo.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,4 +15,7 @@ public class EmployeeService {
         this.employeeRepository = employeeRepository;
     }
 
+    public void init(Employee employee) {
+        employeeRepository.save(employee);
+    }
 }
