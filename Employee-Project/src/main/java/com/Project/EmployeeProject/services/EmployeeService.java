@@ -16,6 +16,9 @@ public class EmployeeService {
     }
 
     public void init(Employee employee) {
+        if (employeeRepository.count() != 0) {
+            return;
+        }
         employeeRepository.save(employee);
     }
 }

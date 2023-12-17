@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Table(name = "employees")
@@ -23,4 +24,6 @@ public class Employee {
     private LocalDate startDate;
     @Column(name = "end_date", columnDefinition = "DATE")
     private LocalDate endDate;
+    @OneToMany
+    private Set<Project> projects;
 }
