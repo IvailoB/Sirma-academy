@@ -2,8 +2,6 @@ package com.Project.EmployeeProject.init.CSV;
 
 import com.Project.EmployeeProject.models.entity.Employee;
 import com.Project.EmployeeProject.models.entity.Project;
-import com.Project.EmployeeProject.repo.EmployeeRepository;
-import com.Project.EmployeeProject.repo.ProjectRepository;
 import com.Project.EmployeeProject.services.EmployeeService;
 import com.Project.EmployeeProject.services.ProjectService;
 import org.springframework.stereotype.Component;

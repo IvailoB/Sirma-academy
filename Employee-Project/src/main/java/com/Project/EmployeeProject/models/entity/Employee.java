@@ -21,6 +21,6 @@ public class Employee {
     private String name;
     @Column(name = "start_date", nullable = false, columnDefinition = "DATE")
     private LocalDate startDate;
-    @Column(name = "end_date", columnDefinition = "DATETIME", nullable = true)
+    @Column(name = "end_date", columnDefinition = "DATE")
     private LocalDate endDate;
 }
