@@ -6,12 +6,15 @@ import com.Project.EmployeeProject.repo.EmployeeRepository;
 import com.Project.EmployeeProject.repo.ProjectRepository;
 import com.Project.EmployeeProject.services.EmployeeService;
 import com.Project.EmployeeProject.services.ProjectService;
+import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
+@Component
 public class CSVReader {
 
     private final EmployeeService employeeService;
@@ -33,7 +36,8 @@ public class CSVReader {
                 Employee employee = new Employee();
                 employee.setId(Long.parseLong(values[0]));
                 employee.setStartDate(LocalDate.parse(values[2]));
-                employee.setEndDate(LocalDate.parse(values[3]));
+                LocalDate dateTo = "null".equalsIgnoreCase(values[3]) ? null : LocalDate.parse(values[3],DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                employee.setEndDate(dateTo);
                 employeeService.init(employee);
 
                 Project project = new Project();

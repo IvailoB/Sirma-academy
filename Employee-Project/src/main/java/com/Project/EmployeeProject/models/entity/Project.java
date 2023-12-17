@@ -18,8 +18,4 @@ public class Project {
     private Long id;
     @Column()
     private String name;
-    @Column(name = "start_date", nullable = false, columnDefinition = "DATE")
-    private LocalDate startDate;
-    @Column(columnDefinition = "DATE")
-    private LocalDate endDate;
 }
