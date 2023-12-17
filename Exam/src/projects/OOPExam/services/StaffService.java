@@ -34,7 +34,7 @@ public class StaffService implements Service {
 
     @Override
     public void editEmployee(int id, String[] data) {
-        Employee employee = getEmployee(id);
+        Employee employee = getEmployeeById(id);
         employee.setId(Integer.parseInt(data[0]));
         employee.setName(data[1]);
         employee.setDepartment(data[2]);
@@ -44,8 +44,8 @@ public class StaffService implements Service {
 
     @Override
     public String fireEmployee(int id) {
-        if (getEmployee(id) != null) {
-            Employee employee = getEmployee(id);
+        if (getEmployeeById(id) != null) {
+            Employee employee = getEmployeeById(id);
             employee.setEndDate(LocalDate.now().toString());
             String employeeInfo = employee.toString();
             employees.remove(employee);
@@ -78,10 +78,10 @@ public class StaffService implements Service {
 
     @Override
     public String searchEmployeeById(int id) {
-        return getEmployee(id).toString();
+        return getEmployeeById(id).toString();
     }
 
-    private Employee getEmployee(int id) {
+    private Employee getEmployeeById(int id) {
         return employees.stream().filter(e -> e.getId() == id).findAny().orElseGet(null);
     }
 }
