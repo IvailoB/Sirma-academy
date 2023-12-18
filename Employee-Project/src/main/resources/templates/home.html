@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<link rel="stylesheet" href="/css/home.css">
+
+<head>
+    <meta charset="UTF-8">
+    <title>All Employees</title>
+</head>
+<body>
+
+<table>
+    <thead>
+    <tr>
+        <th class="text-center">
+            Employee ID
+        </th>
+        <th class="text-center">
+            Project ID
+        </th>
+        <th class="text-center">
+            Start Date
+        </th>
+        <th class="text-center">
+            End Date
+        </th>
+        <th class="text-center" style="border-top: 1px solid #ffffff; border-right: 1px solid #ffffff;">
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="e : ${employees}">
+        <td data-name="employeeId">
+            <p th:text="${e.id}" type="text" name="employeeId" class="form-control"></p>
+        </td>
+        <td data-name="projectId">
+            <p th:each="p : ${e.projects}" type="text" name="projectId" class="form-control">
+                <span th:text="${p.id}"></span>
+            </p>
+        </td>
+        <td data-name="startDate">
+            <p th:text="${e.startDate}" name="startDate"></p>
+        </td>
+        <td data-name="endDate">
+            <p th:text="${e.endDate}"></p>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
