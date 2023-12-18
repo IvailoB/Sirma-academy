@@ -5,6 +5,8 @@ import com.Project.EmployeeProject.repo.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class ProjectService {
     private final ProjectRepository projectRepository;
@@ -17,5 +19,9 @@ public class ProjectService {
 
     public void init(Project project) {
         projectRepository.save(project);
+    }
+
+    public Optional<Project> findById(Long projectId) {
+        return projectRepository.findById(projectId);
     }
 }

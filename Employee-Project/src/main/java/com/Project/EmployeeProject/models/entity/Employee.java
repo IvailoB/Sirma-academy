@@ -16,7 +16,6 @@ import java.util.Set;
 @NoArgsConstructor
 public class Employee {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column()
     private String name;
@@ -24,6 +23,11 @@ public class Employee {
     private LocalDate startDate;
     @Column(name = "end_date", columnDefinition = "DATE")
     private LocalDate endDate;
-    @OneToMany
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "employee_project",
+            joinColumns = @JoinColumn(name = "employee_id"),
+            inverseJoinColumns = @JoinColumn(name = "project_id")
+    )
     private Set<Project> projects;
 }

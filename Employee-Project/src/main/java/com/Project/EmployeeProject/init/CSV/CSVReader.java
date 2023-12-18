@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
-import java.util.Set;
 
 @Component
 public class CSVReader {
@@ -33,23 +32,41 @@ public class CSVReader {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] values = line.split(", ");
-                Employee employee = new Employee();
-                employee.setId(Long.parseLong(values[0]));
-                employee.setStartDate(LocalDate.parse(values[2]));
-                LocalDate dateTo = "null".equalsIgnoreCase(values[3]) ? null : LocalDate.parse(values[3],DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-                employee.setEndDate(dateTo);
+                Long userId = Long.parseLong(values[0]);
+                Long projectId = Long.parseLong(values[1]);
+                LocalDate startDate = LocalDate.parse(values[2]);
+                LocalDate dateTo = "null".equalsIgnoreCase(values[3]) ? null : LocalDate.parse(values[3], DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
-                Project project = new Project();
-                project.setId(Long.parseLong(values[1]));
-                projectService.init(project);
-                Set<Project> projects = new HashSet<>();
-                projects.add(project);
-                employee.setProjects(projects);
+                Employee employee = getEmployee(userId, startDate, dateTo);
+                Project project = getProject(projectId);
+
+                employee.getProjects().add(project);
                 employeeService.init(employee);
-
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private Project getProject(Long projectId) {
+        return projectService.findById(projectId)
+                .orElseGet(() -> {
+                    Project newProject = new Project();
+                    newProject.setId(projectId);
+                    projectService.init(newProject);
+                    return newProject;
+                });
+    }
+
+    private Employee getEmployee(Long userId, LocalDate startDate, LocalDate dateTo) {
+        return employeeService.findById(userId)
+                .orElseGet(() -> {
+                    Employee newEmployee = new Employee();
+                    newEmployee.setId(userId);
+                    newEmployee.setStartDate(startDate);
+                    newEmployee.setEndDate(dateTo);
+                    newEmployee.setProjects(new HashSet<>());
+                    return newEmployee;
+                });
     }
 }
