@@ -11,6 +11,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
+import java.util.Set;
 
 @Component
 public class CSVReader {
@@ -36,11 +38,15 @@ public class CSVReader {
                 employee.setStartDate(LocalDate.parse(values[2]));
                 LocalDate dateTo = "null".equalsIgnoreCase(values[3]) ? null : LocalDate.parse(values[3],DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 employee.setEndDate(dateTo);
-                employeeService.init(employee);
 
                 Project project = new Project();
                 project.setId(Long.parseLong(values[1]));
                 projectService.init(project);
+                Set<Project> projects = new HashSet<>();
+                projects.add(project);
+                employee.setProjects(projects);
+                employeeService.init(employee);
+
             }
         } catch (IOException e) {
             e.printStackTrace();
