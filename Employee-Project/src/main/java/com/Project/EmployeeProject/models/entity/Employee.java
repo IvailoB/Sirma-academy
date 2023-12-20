@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.Deque;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -19,10 +21,8 @@ public class Employee {
     private Long id;
     @Column()
     private String name;
-    @Column(name = "start_date", nullable = false, columnDefinition = "DATE")
-    private LocalDate startDate;
-    @Column(name = "end_date", columnDefinition = "DATE")
-    private LocalDate endDate;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Date> dates;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "employee_project",
