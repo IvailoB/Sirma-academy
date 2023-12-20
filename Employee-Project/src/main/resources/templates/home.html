@@ -39,10 +39,14 @@
             </p>
         </td>
         <td data-name="startDate">
-            <p th:text="${e.startDate}" name="startDate"></p>
+            <p th:each="sd : ${e.dates}" type="text" name="projectId" class="form-control">
+                <span th:text="${sd.startDate}"></span>
+            </p>
         </td>
         <td data-name="endDate">
-            <p th:text="${e.endDate}"></p>
+            <p th:each="ed : ${e.dates}" type="text" name="projectId" class="form-control">
+                <span th:text="${ed.endDate} ?: 'Working...'"></span>
+            </p>
         </td>
     </tr>
     </tbody>
