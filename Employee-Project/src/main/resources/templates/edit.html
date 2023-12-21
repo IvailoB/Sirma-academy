@@ -10,13 +10,13 @@
 </head>
 <body>
 
-<h2 th:text="'Employee ID: ' + ${employee.id}"></h2>
+<h2>Edit Employee</h2>
 
 
-<form th:action="@{/employee/edit/{id}(id=${employee.id})}" th:object="${employee}" method="post">
+<form th:action="@{/employee/edit/{id}/(id=${employee.id})}" th:object="${employee}" method="post">
     <input type="hidden"/>
 
-    <label>Employee ID: <span th:text="${employee.id}"></span></label>
+    <label>Employee ID: <span th:text= "*{id}"></span></label>
 
     <table>
         <thead>
@@ -30,22 +30,20 @@
         <tr>
             <td>
                 <div>
-                    <input placeholder="ProjectID" type="text">
+                    <input th:field="*{projects}" placeholder="ProjectID" type="text">
                 </div>
             </td>
             <td>
-                <input type="date" class="form-control"/>
+                <input th:field="*{dates}" type="date" class="form-control"/>
             </td>
             <td>
-                <input type="date" class="form-control"/>
+                <input th:field="*{dates}" type="date" class="form-control"/>
             </td>
-            <btn>
-                <a class="button" th:href="@{/}">Cancel</a>
-            </btn>
         </tr>
         </tbody>
     </table>
-    <button type="submit">Update</button>
+    <button class="button button1" type="submit">Update</button>
+    <button class="button button3" type="button" onclick="window.location.href='/';">Cancel</button>
 </form>
 </body>
 </html>

@@ -40,7 +40,7 @@ public class EmployeeController {
     @PostMapping("/employee/add")
     @Validated
     public String addEmployee(@Valid @ModelAttribute Employee employee, BindingResult result, Model model) {
-        if (result.hasErrors()) {
+        if(result.hasErrors()){
             return "add";
         }
         employeeService.init(employee);
@@ -51,7 +51,7 @@ public class EmployeeController {
     @Validated
     public String editEmployeeForm(@Valid @PathVariable Long id, Model model) {
         try {
-            model.addAttribute("employee", employeeService.findById(id));
+            model.addAttribute("employee", employeeService.findEmployeeById(id));
         } catch (Exception exception) {
             model.addAttribute("error", exception.getMessage());
             return "redirect:/";
@@ -75,10 +75,10 @@ public class EmployeeController {
         return "redirect:/";
     }
 
-
-//TODO @GetMapping("/employee/sort")
-//    public String sortEmployees(@PathVariable Long id) {
-//        employeeService.sort(id);
-//        return "redirect:/";
+//    TodO @GetMapping("/employee/sort")
+//    public String sortEmployees(Model model) {
+//        List<Object[]> sortEmployee = employeeService.sort();
+//        model.addAttribute("employees", sortEmployee);
+//        return "sort";
 //    }
 }

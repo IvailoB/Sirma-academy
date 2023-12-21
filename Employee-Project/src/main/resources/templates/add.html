@@ -10,42 +10,30 @@
 </head>
 <body>
 
-<h2 th:text="'Employee ID: ' + ${employee.id}"></h2>
-
-
-<form th:action="@{/employee/add/}" th:object="${employee}" method="post">
-    <input type="hidden"/>
-
-    <label>Add Id:<input th:field="*{id}" placeholder="EmployeeId" type="text"></label>
-
+<form th:action="@{/employee/add}" th:object="${employee}" method="post">
+    <label>Employee ID:<input th:field="*{id}" placeholder="EmployeeId" type="text" ></label>
     <table>
         <thead>
         <tr>
             <th>Project ID</th>
             <th>Start Date</th>
-            <th>End Date</th>
         </tr>
         </thead>
         <tbody>
         <tr>
             <td>
                 <div>
-                    <input th:field="*{projects.id}" placeholder="ProjectID" type="text">
+                    <input th:field="*{projects}"  type="text"/>
                 </div>
             </td>
             <td>
-                <input th:field="*{dates.startDate}" type="date" class="form-control"/>
+                <input th:field="*{dates}" type="text" placeholder="2011-04-27"  class="form-control"/>
             </td>
-            <td>
-                <input th:field="*{dates.endDate}" type="date" class="form-control"/>
-            </td>
-            <btn>
-                <a class="button" th:href="@{/}">Cancel</a>
-            </btn>
         </tr>
         </tbody>
     </table>
-    <button type="submit">Update</button>
+    <button class="button button3" type="button" onclick="window.location.href='/';">Cancel</button>
+    <button class="button button1" type="submit">Add</button>
 </form>
 </body>
 </html>

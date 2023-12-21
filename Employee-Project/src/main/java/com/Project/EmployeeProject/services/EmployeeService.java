@@ -30,7 +30,15 @@ public class EmployeeService {
         return employeeRepository.findById(userId);
     }
 
+    public Employee findEmployeeById(Long id){
+        return employeeRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid id: " + id));
+    }
+
     public void delete(Long id) {
         employeeRepository.deleteById(id);
     }
+
+//    public List<Object[]> sort() {
+//        return employeeRepository.findAllEmployeesWorkedTogether();
+//    }
 }
