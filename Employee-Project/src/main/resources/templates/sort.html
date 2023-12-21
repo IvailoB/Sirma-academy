@@ -1,0 +1,56 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+
+<!--<link rel="stylesheet" href="/css/home.css">-->
+
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Sorted Employees</title>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<table>-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--        <th class="text-center">-->
+<!--            Employee 1 ID-->
+<!--        </th>-->
+<!--        <th class="text-center">-->
+<!--            Employee 2 ID-->
+<!--        </th>-->
+<!--        <th class="text-center">-->
+<!--            Project ID-->
+<!--        </th>-->
+<!--        <th class="text-center">-->
+<!--            Total Days-->
+<!--        </th>-->
+<!--        <th class="text-center" style="border-top: 1px solid #ffffff; border-right: 1px solid #ffffff;">-->
+<!--        </th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    <tr th:each="e : ${employees}">-->
+<!--        <td data-name="employee1Id">-->
+<!--            <p th:text="${e.employee1_id}" type="text" name="employee1Id" class="form-control"></p>-->
+<!--        </td>-->
+<!--        <td data-name="employee2Id">-->
+<!--            <p th:each="p : ${e.employee2_id}" type="text" name="employee2Id" class="form-control">-->
+<!--                <span th:text="${p.id}"></span>-->
+<!--            </p>-->
+<!--        </td>-->
+<!--        <td data-name="project_id">-->
+<!--            <p type="text" name="projectId" class="form-control">-->
+<!--                <span th:text="${e.project_id}"></span>-->
+<!--            </p>-->
+<!--        </td>-->
+<!--        <td data-name="endDate">-->
+<!--            <p type="text" name="projectId" class="form-control">-->
+<!--                <span th:text="${e.total_overlapping_days}"></span>-->
+<!--            </p>-->
+<!--        </td>-->
+<!--    </tr>-->
+<!--    <button><a th:href="@{/}">BACK</a></button>-->
+<!--    </tbody>-->
+<!--</table>-->
+<!--</body>-->
+<!--</html>-->
